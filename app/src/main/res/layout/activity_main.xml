@@ -13,9 +13,9 @@
         android:text="Term Tracker"
         android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="84dp" />
+        tools:layout_editor_absoluteY="189dp" />
 
     <Button
         android:id="@+id/button"
@@ -23,8 +23,16 @@
         android:layout_height="53dp"
         android:text="Terms"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="260dp" />
+        tools:layout_editor_absoluteY="287dp" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="135dp"
+        android:layout_height="135dp"
+        app:srcCompat="@drawable/ic_launcher_foreground"
+        tools:layout_editor_absoluteX="138dp"
+        tools:layout_editor_absoluteY="54dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
