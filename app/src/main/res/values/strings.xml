@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Glenn_Straughn_C196_App</string>
+    <string name="term_tracker">Term Tracker</string>
+    <string name="enter">Enter</string>
+    <string name="cap">Cap</string>
 </resources>

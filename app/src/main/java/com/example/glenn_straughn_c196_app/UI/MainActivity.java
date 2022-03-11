@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    public void EnterHere(View view) {
+    public void enterHere(View view) {
         Intent intent = new Intent(MainActivity.this, TermList.class);
         startActivity(intent);
     }
