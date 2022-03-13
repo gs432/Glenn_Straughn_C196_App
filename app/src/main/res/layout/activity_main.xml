@@ -23,7 +23,7 @@
         android:layout_width="250dp"
         android:layout_height="50dp"
         android:layout_marginTop="12dp"
-        android:onClick="enterHere"
+        android:onClick="viewTerms"
         android:text="@string/view_terms"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
@@ -46,6 +46,7 @@
         android:layout_height="50dp"
         android:layout_marginStart="71dp"
         android:layout_marginTop="483dp"
+        android:onClick="saveTerm"
         android:text="@string/save_term"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
