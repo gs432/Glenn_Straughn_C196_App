@@ -15,31 +15,29 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.499"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf=""
+        app:layout_constraintBottom_toTopOf="@id/button"
         tools:layout_editor_absoluteY="211dp" />
 
     <Button
         android:id="@+id/button"
         android:layout_width="248dp"
         android:layout_height="53dp"
-        android:text="@string/enter"
-        app:layout_constraintTop_toBottomOf="@id/textView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="12dp"
         android:onClick="enterHere"
-        tools:layout_editor_absoluteY="287dp" />
+        android:text="@string/enter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textView" />
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="135dp"
-        android:layout_height="135dp"
-        app:srcCompat="@drawable/ic_launcher_foreground"
+        android:layout_width="195dp"
+        android:layout_height="204dp"
+        android:contentDescription="@string/cap"
         app:layout_constraintBottom_toTopOf="@id/textView"
         app:layout_constraintLeft_toLeftOf="@id/textView"
         app:layout_constraintRight_toRightOf="@id/textView"
-        tools:layout_editor_absoluteX="138dp"
-        tools:layout_editor_absoluteY="54dp"
-        android:contentDescription="@string/cap" />
+        app:srcCompat="@drawable/ic_launcher_foreground" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
