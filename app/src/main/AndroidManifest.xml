@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Glenn_Straughn_C196_App">
         <activity
+            android:name=".UI.test"
+            android:exported="false" />
+        <activity
             android:name=".UI.AssessmentDetails"
             android:exported="false" />
         <activity

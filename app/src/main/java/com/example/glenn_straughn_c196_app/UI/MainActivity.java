@@ -16,12 +16,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    public void viewTerms(View view) {
+    public void enterClick(View view) {
         Intent intent = new Intent(MainActivity.this, TermList.class);
         startActivity(intent);
-    }
-
-    public void saveTerm(View view) {
-
     }
 }

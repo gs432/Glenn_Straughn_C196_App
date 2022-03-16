@@ -1,14 +1,11 @@
 <resources>
     <string name="app_name">Glenn_Straughn_C196_App</string>
     <string name="term_tracker">Term Tracker</string>
-    <string name="enter">Enter</string>
     <string name="cap">Cap</string>
-    <string name="view_terms">View Terms</string>
+    <string name="enter">Enter</string>
     <string name="save_term">Save Term</string>
-    <string name="enter_term_title">Enter Term Title</string>
     <string name="start_date">Start Date</string>
     <string name="end_date">End Date</string>
     <string name="term_title">Term Title</string>
-    <string name="enter_start_date">Enter Start Date</string>
-    <string name="enter_end_date">Enter End Date</string>
+    <string name="terms">Terms</string>
 </resources>
