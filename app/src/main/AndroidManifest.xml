@@ -11,21 +11,27 @@
         android:theme="@style/Theme.Glenn_Straughn_C196_App">
         <activity
             android:name=".UI.AssessmentDetails"
+            android:label="Assessment Details"
             android:exported="false" />
         <activity
             android:name=".UI.CourseDetails"
+            android:label="Course Details"
             android:exported="false" />
         <activity
             android:name=".UI.TermDetails"
+            android:label="Term Details"
             android:exported="false" />
         <activity
             android:name=".UI.AssessmentList"
+            android:label="Assessments"
             android:exported="false" />
         <activity
             android:name=".UI.CourseList"
+            android:label="Courses"
             android:exported="false" />
         <activity
             android:name=".UI.TermList"
+            android:label="Terms"
             android:exported="false" />
         <activity
             android:name=".UI.MainActivity"
