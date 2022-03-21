@@ -29,7 +29,7 @@ public class TermList extends AppCompatActivity {
 
         repository=new Repository(getApplication());
         List<Term> allTerms = repository.getAllTerms();
-        RecyclerView recyclerView = findViewById(R.id.recyclerview);
+        RecyclerView recyclerView = findViewById(R.id.termrecyclerview);
 
         final TermAdapter termAdapter = new TermAdapter(this);
         recyclerView.setAdapter(termAdapter);
@@ -41,14 +41,14 @@ public class TermList extends AppCompatActivity {
         return true;
     }
 
-    public boolean onOptionSelected(MenuItem item){
+    public boolean onOptionsItemSelected(MenuItem item){
 
         switch(item.getItemId()){
             case android.R.id.home:
                 this.finish();
                 return true;
 
-            case R.id.productrefresh:
+            case R.id.refresh:
                 repository=new Repository(getApplication());
                 List<Term> allTerms = repository.getAllTerms();
                 RecyclerView recyclerView = findViewById(R.id.recyclerview);

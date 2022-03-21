@@ -28,10 +28,11 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ScrollView
-        android:layout_width="393dp"
-        android:layout_height="318dp"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="97dp" >
+        android:layout_width="391dp"
+        android:layout_height="754dp"
+        android:layout_marginTop="97dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"

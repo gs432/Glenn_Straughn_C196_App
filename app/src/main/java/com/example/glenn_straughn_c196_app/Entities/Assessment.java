@@ -4,22 +4,34 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 @Entity(tableName = "assessments")
 public class Assessment {
     @PrimaryKey(autoGenerate = true)
     private int assessmentId;
     private String assessmentName;
-    private LocalDate assessmentDay;
+    private Date assessmentDay;
     private String assessmentType;
     private int courseId;
 
-    public Assessment(int assessmentId, String assessmentName, LocalDate assessmentDay, String assessmentType, int courseId){
+    public Assessment(int assessmentId, String assessmentName, Date assessmentDay, String assessmentType, int courseId){
         this.assessmentId = assessmentId;
         this.assessmentName = assessmentName;
         this.assessmentDay = assessmentDay;
         this.assessmentType = assessmentType;
         this.courseId = courseId;
+    }
+
+    @Override
+    public String toString() {
+        return "Assessment{" +
+                "assessmentId=" + assessmentId +
+                ", assessmentName='" + assessmentName + '\'' +
+                ", assessmentDay=" + assessmentDay +
+                ", assessmentType='" + assessmentType + '\'' +
+                ", courseId=" + courseId +
+                '}';
     }
 
     public int getAssessmentId() {
@@ -38,11 +50,11 @@ public class Assessment {
         this.assessmentName = assessmentName;
     }
 
-    public LocalDate getAssessmentDay() {
+    public Date getAssessmentDay() {
         return assessmentDay;
     }
 
-    public void setAssessmentDay(LocalDate assessmentDay) {
+    public void setAssessmentDay(Date assessmentDay) {
         this.assessmentDay = assessmentDay;
     }
 

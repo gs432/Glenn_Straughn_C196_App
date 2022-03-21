@@ -2,9 +2,9 @@ package com.example.glenn_straughn_c196_app.Database;
 
 import android.app.Application;
 
-import com.example.glenn_straughn_c196_app.DAO.AssessmentDb;
-import com.example.glenn_straughn_c196_app.DAO.CourseDb;
-import com.example.glenn_straughn_c196_app.DAO.TermDb;
+import com.example.glenn_straughn_c196_app.DAO.AssessmentDao;
+import com.example.glenn_straughn_c196_app.DAO.CourseDao;
+import com.example.glenn_straughn_c196_app.DAO.TermDao;
 import com.example.glenn_straughn_c196_app.Entities.Assessment;
 import com.example.glenn_straughn_c196_app.Entities.Course;
 import com.example.glenn_straughn_c196_app.Entities.Term;
@@ -14,11 +14,11 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class Repository {
-    private TermDb rTerm;
+    private TermDao rTerm;
     private List<Term> rTermList;
-    private CourseDb rCourse;
+    private CourseDao rCourse;
     private List<Course> rCourseList;
-    private AssessmentDb rAssessment;
+    private AssessmentDao rAssessment;
     private List<Assessment> rAssessmentList;
     private static int THREAD_COUNT=4;
     private static final ExecutorService databaseExecutor = Executors.newFixedThreadPool(THREAD_COUNT);
@@ -76,7 +76,7 @@ public class Repository {
     }
 
 
-    public List<Course>getAllCourses(){
+    public List<Course> getAllCourses(){
         databaseExecutor.execute(()->{
             rCourseList = rCourse.getAllCourses();
         });

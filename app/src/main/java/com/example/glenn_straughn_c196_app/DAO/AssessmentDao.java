@@ -8,12 +8,11 @@ import androidx.room.Query;
 import androidx.room.Update;
 
 import com.example.glenn_straughn_c196_app.Entities.Assessment;
-import com.example.glenn_straughn_c196_app.Entities.Term;
 
 import java.util.List;
 
 @Dao
-public interface AssessmentDb {
+public interface AssessmentDao {
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insert(Assessment assessment);
@@ -24,6 +23,6 @@ public interface AssessmentDb {
     @Delete
     void delete(Assessment assessment);
 
-    @Query("SELECT * FROM ASSESSMENTS ORDER BY assessmentID ASC")
-    List<Term> getAllAssessments();
+    @Query("SELECT * FROM assessments ORDER BY assessmentID ASC")
+    List<Assessment> getAllAssessments();
 }

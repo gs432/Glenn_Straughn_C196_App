@@ -4,20 +4,31 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 @Entity(tableName = "terms")
 public class Term {
     @PrimaryKey(autoGenerate = true)
     private int termId;
     private String termName;
-    private LocalDate termStart;
-    private LocalDate termEnd;
+    private Date termStart;
+    private Date termEnd;
 
-    public Term(int termId, String termName, LocalDate termStart, LocalDate termEnd) {
+    public Term(int termId, String termName, Date termStart, Date termEnd) {
         this.termId = termId;
         this.termName = termName;
         this.termStart = termStart;
         this.termEnd = termEnd;
+    }
+
+    @Override
+    public String toString() {
+        return "Term{" +
+                "termId=" + termId +
+                ", termName='" + termName + '\'' +
+                ", termStart=" + termStart +
+                ", termEnd=" + termEnd +
+                '}';
     }
 
     public int getTermId() {
@@ -36,19 +47,19 @@ public class Term {
         this.termName = termName;
     }
 
-    public LocalDate getTermStart() {
+    public Date getTermStart() {
         return termStart;
     }
 
-    public void setTermStart(LocalDate termStart) {
+    public void setTermStart(Date termStart) {
         this.termStart = termStart;
     }
 
-    public LocalDate getTermEnd() {
+    public Date getTermEnd() {
         return termEnd;
     }
 
-    public void setTermEnd(LocalDate termEnd) {
+    public void setTermEnd(Date termEnd) {
         this.termEnd = termEnd;
     }
 }

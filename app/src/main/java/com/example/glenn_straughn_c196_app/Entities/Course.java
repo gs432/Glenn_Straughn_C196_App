@@ -4,14 +4,15 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 @Entity(tableName = "courses")
 public class Course {
     @PrimaryKey(autoGenerate = true)
     private int courseId;
     private String courseName;
-    private LocalDate courseStart;
-    private LocalDate courseEnd;
+    private Date courseStart;
+    private Date courseEnd;
     private String courseStatus;
     private String instructorName;
     private String instructorPhone;
@@ -19,7 +20,7 @@ public class Course {
     private String courseNote;
     private int termId;
 
-    public Course(int courseId, String courseName, LocalDate courseStart, LocalDate courseEnd, String courseStatus, String instructorName, String instructorPhone, String instructorEmail, String courseNote, int termId){
+    public Course(int courseId, String courseName, Date courseStart, Date courseEnd, String courseStatus, String instructorName, String instructorPhone, String instructorEmail, String courseNote, int termId){
         this.courseId = courseId;
         this.courseName = courseName;
         this.courseStart = courseStart;
@@ -30,6 +31,22 @@ public class Course {
         this.instructorEmail = instructorEmail;
         this.courseNote = courseNote;
         this.termId = termId;
+    }
+
+    @Override
+    public String toString() {
+        return "Course{" +
+                "courseId=" + courseId +
+                ", courseName='" + courseName + '\'' +
+                ", courseStart=" + courseStart +
+                ", courseEnd=" + courseEnd +
+                ", courseStatus='" + courseStatus + '\'' +
+                ", instructorName='" + instructorName + '\'' +
+                ", instructorPhone='" + instructorPhone + '\'' +
+                ", instructorEmail='" + instructorEmail + '\'' +
+                ", courseNote='" + courseNote + '\'' +
+                ", termId=" + termId +
+                '}';
     }
 
     public int getCourseId() {
@@ -48,19 +65,19 @@ public class Course {
         this.courseName = courseName;
     }
 
-    public LocalDate getCourseStart() {
+    public Date getCourseStart() {
         return courseStart;
     }
 
-    public void setCourseStart(LocalDate courseStart) {
+    public void setCourseStart(Date courseStart) {
         this.courseStart = courseStart;
     }
 
-    public LocalDate getCourseEnd() {
+    public Date getCourseEnd() {
         return courseEnd;
     }
 
-    public void setCourseEnd(LocalDate courseEnd) {
+    public void setCourseEnd(Date courseEnd) {
         this.courseEnd = courseEnd;
     }
 
