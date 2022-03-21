@@ -18,9 +18,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        /*
         Repository repo=new Repository(getApplication());
         Term term = new Term(1, "term1", new Date(), new Date());
         repo.insert(term);
+         */
     }
 
     public void enterClick(View view) {

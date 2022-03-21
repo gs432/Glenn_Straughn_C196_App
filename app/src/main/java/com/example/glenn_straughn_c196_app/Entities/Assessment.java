@@ -11,11 +11,11 @@ public class Assessment {
     @PrimaryKey(autoGenerate = true)
     private int assessmentId;
     private String assessmentName;
-    private Date assessmentDay;
+    private String assessmentDay;
     private String assessmentType;
     private int courseId;
 
-    public Assessment(int assessmentId, String assessmentName, Date assessmentDay, String assessmentType, int courseId){
+    public Assessment(int assessmentId, String assessmentName, String assessmentDay, String assessmentType, int courseId){
         this.assessmentId = assessmentId;
         this.assessmentName = assessmentName;
         this.assessmentDay = assessmentDay;
@@ -50,11 +50,11 @@ public class Assessment {
         this.assessmentName = assessmentName;
     }
 
-    public Date getAssessmentDay() {
+    public String getAssessmentDay() {
         return assessmentDay;
     }
 
-    public void setAssessmentDay(Date assessmentDay) {
+    public void setAssessmentDay(String assessmentDay) {
         this.assessmentDay = assessmentDay;
     }
 

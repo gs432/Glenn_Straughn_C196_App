@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -25,11 +26,10 @@ public class TermList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_term_list);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         repository=new Repository(getApplication());
         List<Term> allTerms = repository.getAllTerms();
-        RecyclerView recyclerView = findViewById(R.id.termrecyclerview);
+        RecyclerView recyclerView = findViewById(R.id.termRecyclerView);
 
         final TermAdapter termAdapter = new TermAdapter(this);
         recyclerView.setAdapter(termAdapter);
@@ -41,6 +41,8 @@ public class TermList extends AppCompatActivity {
         return true;
     }
 
+
+    @SuppressLint("NonConstantResourceId")
     public boolean onOptionsItemSelected(MenuItem item){
 
         switch(item.getItemId()){
@@ -48,10 +50,10 @@ public class TermList extends AppCompatActivity {
                 this.finish();
                 return true;
 
-            case R.id.refresh:
+            case R.id.termRefresh:
                 repository=new Repository(getApplication());
                 List<Term> allTerms = repository.getAllTerms();
-                RecyclerView recyclerView = findViewById(R.id.recyclerview);
+                RecyclerView recyclerView = findViewById(R.id.termRecyclerView);
                 final TermAdapter termAdapter=new TermAdapter(this);
                 recyclerView.setAdapter(termAdapter);
                 recyclerView.setLayoutManager(new LinearLayoutManager(this));

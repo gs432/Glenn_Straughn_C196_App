@@ -11,8 +11,8 @@ public class Course {
     @PrimaryKey(autoGenerate = true)
     private int courseId;
     private String courseName;
-    private Date courseStart;
-    private Date courseEnd;
+    private String courseStart;
+    private String courseEnd;
     private String courseStatus;
     private String instructorName;
     private String instructorPhone;
@@ -20,7 +20,7 @@ public class Course {
     private String courseNote;
     private int termId;
 
-    public Course(int courseId, String courseName, Date courseStart, Date courseEnd, String courseStatus, String instructorName, String instructorPhone, String instructorEmail, String courseNote, int termId){
+    public Course(int courseId, String courseName, String courseStart, String courseEnd, String courseStatus, String instructorName, String instructorPhone, String instructorEmail, String courseNote, int termId){
         this.courseId = courseId;
         this.courseName = courseName;
         this.courseStart = courseStart;
@@ -65,19 +65,19 @@ public class Course {
         this.courseName = courseName;
     }
 
-    public Date getCourseStart() {
+    public String getCourseStart() {
         return courseStart;
     }
 
-    public void setCourseStart(Date courseStart) {
+    public void setCourseStart(String courseStart) {
         this.courseStart = courseStart;
     }
 
-    public Date getCourseEnd() {
+    public String getCourseEnd() {
         return courseEnd;
     }
 
-    public void setCourseEnd(Date courseEnd) {
+    public void setCourseEnd(String courseEnd) {
         this.courseEnd = courseEnd;
     }
 

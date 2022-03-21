@@ -35,14 +35,12 @@ public class TermAdapter extends RecyclerView.Adapter<TermAdapter.TermViewHolder
 
                 String myFormat = "MM/dd/yy";
                 SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
-                String startString = sdf.format(current.getTermStart().getTime());
-                String endString = sdf.format(current.getTermEnd().getTime());
 
                 Intent intent=new Intent(context,TermList.class);
                 intent.putExtra("termId", current.getTermId());
                 intent.putExtra("termName", current.getTermName());
-                intent.putExtra("termStart", startString);
-                intent.putExtra("termEnd", endString);
+                intent.putExtra("termStart", current.getTermStart());
+                intent.putExtra("termEnd", current.getTermEnd());
                 context.startActivity(intent);
             });
         }
