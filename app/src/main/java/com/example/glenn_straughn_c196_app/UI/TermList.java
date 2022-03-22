@@ -16,6 +16,7 @@ import com.example.glenn_straughn_c196_app.Entities.Term;
 import com.example.glenn_straughn_c196_app.R;
 
 import java.util.List;
+import java.util.Objects;
 
 public class TermList extends AppCompatActivity {
     private Repository repository;
@@ -25,6 +26,7 @@ public class TermList extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_term_list);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         repository=new Repository(getApplication());
@@ -63,8 +65,13 @@ public class TermList extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void enterTermList(View view) {
+    public void enterCourseList(View view) {
         Intent intent=new Intent(TermList.this,CourseList.class);
+        startActivity(intent);
+    }
+
+    public void enterNewTerm(View view){
+        Intent intent = new Intent(TermList.this, TermDetails.class);
         startActivity(intent);
     }
 }

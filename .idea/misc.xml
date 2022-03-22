@@ -4,6 +4,9 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/GStraughn/Desktop/Straughn-C196/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.3675" />
+        <entry key="..\:/Users/GStraughn/Desktop/Straughn-C196/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.3675" />
+        <entry key="..\:/Users/GStraughn/Desktop/Straughn-C196/app/src/main/res/drawable/ic_baseline_add_circle_24.xml" value="0.3675" />
+        <entry key="..\:/Users/GStraughn/Desktop/Straughn-C196/app/src/main/res/drawable/ic_launcher_background.xml" value="0.3675" />
         <entry key="..\:/Users/GStraughn/Desktop/Straughn-C196/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.3675" />
         <entry key="..\:/Users/GStraughn/Desktop/Straughn-C196/app/src/main/res/layout-land/activity_main.xml" value="0.31040564373897706" />
         <entry key="..\:/Users/GStraughn/Desktop/Straughn-C196/app/src/main/res/layout/activity_assessment_details.xml" value="0.36666666666666664" />
@@ -12,16 +15,13 @@
         <entry key="..\:/Users/GStraughn/Desktop/Straughn-C196/app/src/main/res/layout/activity_course_list.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/GStraughn/Desktop/Straughn-C196/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/GStraughn/Desktop/Straughn-C196/app/src/main/res/layout/activity_term_details.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/GStraughn/Desktop/Straughn-C196/app/src/main/res/layout/activity_term_list.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/strau/StudioProjects/Glenn_Straughn_C196_App/app/src/main/res/layout-land/activity_main.xml" value="0.21" />
-        <entry key="..\:/Users/strau/StudioProjects/Glenn_Straughn_C196_App/app/src/main/res/layout/activity_assessment_list.xml" value="0.1621376811594203" />
-        <entry key="..\:/Users/strau/StudioProjects/Glenn_Straughn_C196_App/app/src/main/res/layout/activity_main.xml" value="0.2" />
-        <entry key="..\:/Users/strau/StudioProjects/Glenn_Straughn_C196_App/app/src/main/res/layout/activity_term_list.xml" value="0.2" />
-        <entry key="..\:/Users/strau/StudioProjects/Glenn_Straughn_C196_App/app/src/main/res/layout/activity_test.xml" value="0.22" />
-        <entry key="..\:/Users/strau/StudioProjects/Glenn_Straughn_C196_App/app/src/main/res/layout/assessment_list_item.xml" value="0.1621376811594203" />
-        <entry key="..\:/Users/strau/StudioProjects/Glenn_Straughn_C196_App/app/src/main/res/layout/course_list_item.xml" value="0.1621376811594203" />
-        <entry key="..\:/Users/strau/StudioProjects/Glenn_Straughn_C196_App/app/src/main/res/layout/term_list_item.xml" value="0.1621376811594203" />
-        <entry key="..\:/Users/strau/StudioProjects/Glenn_Straughn_C196_App/app/src/main/res/menu/menu_term_list.xml" value="0.1641025641025641" />
+        <entry key="..\:/Users/GStraughn/Desktop/Straughn-C196/app/src/main/res/layout/activity_term_list.xml" value="0.33" />
+        <entry key="..\:/Users/GStraughn/Desktop/Straughn-C196/app/src/main/res/layout/term_list_item.xml" value="0.30085470085470084" />
+        <entry key="..\:/Users/GStraughn/Desktop/Straughn-C196/app/src/main/res/layout/test.xml" value="0.30085470085470084" />
+        <entry key="..\:/Users/GStraughn/Desktop/Straughn-C196/app/src/main/res/menu/menu_productlist.xml" value="0.25092592592592594" />
+        <entry key="..\:/Users/GStraughn/Desktop/Straughn-C196/app/src/main/res/menu/menu_term_list.xml" value="0.30085470085470084" />
+        <entry key="..\:/Users/GStraughn/Desktop/Straughn-C196/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.3675" />
+        <entry key="..\:/Users/GStraughn/Desktop/Straughn-C196/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.3675" />
       </map>
     </option>
   </component>
