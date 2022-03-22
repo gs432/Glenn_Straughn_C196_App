@@ -25,7 +25,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
 
         private final TextView courseItemView;
 
-        private courseViewHolder(View itemView){
+        private CourseViewHolder(View itemView){
 
             super(itemView);
             courseItemView = itemView.findViewById(R.id.textView);

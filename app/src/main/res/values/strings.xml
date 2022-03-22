@@ -10,4 +10,5 @@
     <string name="terms">Terms</string>
     <string name="channel_name">Notifications</string>
     <string name="channel_description">Description</string>
+    <string name="details">Details</string>
 </resources>

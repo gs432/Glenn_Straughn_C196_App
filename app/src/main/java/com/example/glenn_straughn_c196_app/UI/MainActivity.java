@@ -23,7 +23,9 @@ public class MainActivity extends AppCompatActivity {
         Repository repo=new Repository(getApplication());
         Term term = new Term(1, "term1", new Date(), new Date());
         repo.insert(term);
+
          */
+
     }
 
     public void enterClick(View view) {
