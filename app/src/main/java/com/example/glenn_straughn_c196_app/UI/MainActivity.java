@@ -19,12 +19,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        /*
+
         Repository repo=new Repository(getApplication());
-        Term term = new Term(1, "term1", new Date(), new Date());
+        Term term = new Term(1, "term1", "3/2/23", "9/3/23");
         repo.insert(term);
 
-         */
+
+
+
 
     }
 

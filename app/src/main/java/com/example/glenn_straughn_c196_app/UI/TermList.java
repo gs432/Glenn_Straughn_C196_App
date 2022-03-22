@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 
 import com.example.glenn_straughn_c196_app.Database.Repository;
 import com.example.glenn_straughn_c196_app.Entities.Term;
@@ -19,6 +20,11 @@ import java.util.List;
 import java.util.Objects;
 
 public class TermList extends AppCompatActivity {
+    String termName;
+    int termId;
+    EditText editTermName;
+    EditText editTermStart;
+    EditText editTermEnd;
     private Repository repository;
 
     @Override
@@ -26,6 +32,7 @@ public class TermList extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_term_list);
+
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -44,7 +51,7 @@ public class TermList extends AppCompatActivity {
     }
 
 
-    @SuppressLint("NonConstantResourceId")
+
     public boolean onOptionsItemSelected(MenuItem item){
 
         switch(item.getItemId()){
