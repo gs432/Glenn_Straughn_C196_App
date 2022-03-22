@@ -37,7 +37,7 @@ public class TermAdapter extends RecyclerView.Adapter<TermAdapter.TermViewHolder
                 String myFormat = "MM/dd/yy";
                 SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
 
-                Intent intent=new Intent(context,TermList.class);
+                Intent intent=new Intent(context,TermDetails.class);
                 intent.putExtra("termId", current.getTermId());
                 intent.putExtra("termName", current.getTermName());
                 intent.putExtra("termStart", current.getTermStart());
