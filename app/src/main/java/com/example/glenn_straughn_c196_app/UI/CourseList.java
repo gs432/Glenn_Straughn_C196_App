@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -13,12 +12,21 @@ import android.view.View;
 
 import com.example.glenn_straughn_c196_app.Database.Repository;
 import com.example.glenn_straughn_c196_app.Entities.Course;
+import com.example.glenn_straughn_c196_app.Entities.Term;
 import com.example.glenn_straughn_c196_app.R;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class CourseList extends AppCompatActivity {
 
+    List<Term> allTerms;
+    List<Course> allCourses;
+    List<Course> filteredCourses;
+    int termId;
+    int courseId;
+    Term currentTerm;
     private Repository repository;
 
     @Override
@@ -26,7 +34,23 @@ public class CourseList extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_course_list);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        /*
+        for (Term term : allTerms) {
+            if (term.getTermId() == termId) {
+                currentTerm = term;
+            }
+        }
+
+        filteredCourses = new ArrayList<>();
+        for (Course course: allCourses) {
+            if (course.getTermId() == termId) {
+                filteredCourses.add(course);
+            }
+        }
+        */
 
         repository=new Repository(getApplication());
         List<Course> allCourses = repository.getAllCourses();
@@ -42,8 +66,6 @@ public class CourseList extends AppCompatActivity {
         return true;
     }
 
-
-    @SuppressLint("NonConstantResourceId")
     public boolean onOptionsItemSelected(MenuItem item){
 
         switch(item.getItemId()){
@@ -64,8 +86,10 @@ public class CourseList extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void enterCourseList(View view) {
-        Intent intent=new Intent(CourseList.this,CourseList.class);
+    public void enterNewCourse(View view) {
+        Intent intent = new Intent(CourseList.this,CourseDetails.class);
+        intent.putExtra("courseId", courseId);
+        intent.putExtra("id", -1);
         startActivity(intent);
     }
 }

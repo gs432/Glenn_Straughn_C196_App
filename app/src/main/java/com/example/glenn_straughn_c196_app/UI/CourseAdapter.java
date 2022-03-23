@@ -28,7 +28,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
         private CourseViewHolder(View itemView){
 
             super(itemView);
-            courseItemView = itemView.findViewById(R.id.textView);
+            courseItemView = itemView.findViewById(R.id.courseItemView);
             itemView.setOnClickListener(view -> {
                 int position=getAdapterPosition();
                 final Course current= rCourseList.get(position);
@@ -36,7 +36,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
                 String myFormat = "MM/dd/yy";
                 SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
 
-                Intent intent=new Intent(context,TermList.class);
+                Intent intent=new Intent(context,CourseDetails.class);
                 intent.putExtra("courseId", current.getCourseId());
                 intent.putExtra("courseName", current.getCourseName());
                 intent.putExtra("courseStart", current.getCourseStart());

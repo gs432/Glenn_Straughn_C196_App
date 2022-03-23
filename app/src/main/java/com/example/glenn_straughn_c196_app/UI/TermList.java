@@ -20,11 +20,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class TermList extends AppCompatActivity {
-    String termName;
-    int termId;
-    EditText editTermName;
-    EditText editTermStart;
-    EditText editTermEnd;
+
     private Repository repository;
 
     @Override
@@ -45,12 +41,11 @@ public class TermList extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         termAdapter.setTerms(allTerms);
     }
+
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_term_list, menu);
         return true;
     }
-
-
 
     public boolean onOptionsItemSelected(MenuItem item){
 
@@ -70,11 +65,6 @@ public class TermList extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    public void enterCourseList(View view) {
-        Intent intent=new Intent(TermList.this,CourseList.class);
-        startActivity(intent);
     }
 
     public void enterNewTerm(View view){

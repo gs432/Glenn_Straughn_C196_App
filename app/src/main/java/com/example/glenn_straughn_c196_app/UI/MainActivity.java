@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.glenn_straughn_c196_app.Database.Repository;
+import com.example.glenn_straughn_c196_app.Entities.Course;
 import com.example.glenn_straughn_c196_app.Entities.Term;
 import com.example.glenn_straughn_c196_app.R;
 
@@ -24,6 +25,9 @@ public class MainActivity extends AppCompatActivity {
         Repository repo=new Repository(getApplication());
         Term term = new Term(1, "term1", "1/2/23", "1/3/24");
         repo.insert(term);
+
+        Course course = new Course(1, "Course1", "2/3/23", "3/3/24", "enrolled", "Sher", "5560026", "mail@mail.com", " ", 1);
+        repo.insert(course);
 
         Term term2 = new Term(2, "term2", "2/2/23", "2/3/24");
         repo.insert(term2);
