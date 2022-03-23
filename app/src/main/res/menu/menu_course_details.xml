@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:title="@string/save"
+        android:orderInCategory="100"
+        android:id="@+id/saveCourse"/>
+    <item android:title="Share Note"
+        android:orderInCategory="100"
+        android:id="@+id/share"/>
+    <item android:title="@string/get_notification"
+        android:orderInCategory="100"
+        android:id="@+id/notification"/>
+</menu>

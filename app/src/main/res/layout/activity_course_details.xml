@@ -7,17 +7,6 @@
     tools:context=".UI.CourseDetails">
 
     <Button
-        android:id="@+id/saveCourseBtn"
-        android:layout_width="180dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="230dp"
-        android:onClick="saveCourseBtn"
-        android:text="Save Course"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
         android:id="@+id/viewAssessmentsBtn"
         android:layout_width="180dp"
         android:layout_height="wrap_content"

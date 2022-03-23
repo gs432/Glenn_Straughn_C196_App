@@ -2,9 +2,14 @@ package com.example.glenn_straughn_c196_app.UI;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlarmManager;
 import android.app.DatePickerDialog;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -13,6 +18,7 @@ import com.example.glenn_straughn_c196_app.Database.Repository;
 import com.example.glenn_straughn_c196_app.Entities.Term;
 import com.example.glenn_straughn_c196_app.R;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -57,9 +63,6 @@ public class TermDetails extends AppCompatActivity {
 
         repository = new Repository(getApplication());
 
-       // String dateFormat = "MM/dd/yy";
-       // SimpleDateFormat sdf = new SimpleDateFormat(dateFormat, Locale.US);
-
         termStartDate = (datePicker, year, monthOfYear, dayOfMonth) -> {
             myCalendarStart.set(Calendar.YEAR, year);
             myCalendarStart.set(Calendar.MONTH, monthOfYear);
@@ -80,7 +83,30 @@ public class TermDetails extends AppCompatActivity {
 
     }
 
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_term_details, menu);
+        return true;
+    }
 
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                this.finish();
+                return true;
+            case R.id.saveTerm:
+                Term term;
+                if (termId == -1) {
+                    int newID = repository.getAllTerms().get(repository.getAllTerms().size() - 1).getTermId() + 1;
+                    term = new Term(newID, editTermName.getText().toString(), editTermStart.getText().toString(), editTermEnd.getText().toString());
+                    repository.insert(term);
+                } else {
+                    term = new Term(termId, editTermName.getText().toString(), editTermStart.getText().toString(), editTermEnd.getText().toString());
+                    repository.update(term);
+                }
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
     private void updateStartLabel() {
         String myFormat = "MM/dd/yy";

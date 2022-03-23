@@ -2,5 +2,5 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:title="@string/refresh"
         android:orderInCategory="100"
-        android:id="@+id/courseRefresh"/>
+        android:id="@+id/assessmentRefresh"/>
 </menu>
