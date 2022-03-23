@@ -74,7 +74,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/textView10"
+                    android:id="@+id/termStartLabel"
                     android:layout_width="180dp"
                     android:layout_height="match_parent"
                     android:layout_margin="2dp"

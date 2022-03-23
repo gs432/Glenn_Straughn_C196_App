@@ -10,6 +10,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 
 import com.example.glenn_straughn_c196_app.Database.Repository;
+import com.example.glenn_straughn_c196_app.Entities.Term;
 import com.example.glenn_straughn_c196_app.R;
 
 import java.text.SimpleDateFormat;
@@ -41,6 +42,7 @@ public class TermDetails extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+
         termId = getIntent().getIntExtra("termId", -1);
         termName = getIntent().getStringExtra("termName");
         termStart = getIntent().getStringExtra("termStart");
@@ -50,6 +52,8 @@ public class TermDetails extends AppCompatActivity {
         editTermName.setText(termName);
         editTermStart = findViewById(R.id.termStart);
         editTermEnd = findViewById(R.id.termEnd);
+        editTermStart.setText(termStart);
+        editTermEnd.setText(termEnd);
 
         repository = new Repository(getApplication());
 

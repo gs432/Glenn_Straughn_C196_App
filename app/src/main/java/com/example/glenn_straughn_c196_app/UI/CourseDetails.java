@@ -16,8 +16,11 @@ public class CourseDetails extends AppCompatActivity {
         setContentView(R.layout.activity_course_details);
     }
 
-    public void enterCourseList(View view) {
+    public void enterAssessmentList(View view) {
         Intent intent=new Intent(CourseDetails.this,AssessmentList.class);
         startActivity(intent);
+    }
+
+    public void saveCourseBtn(View view) {
     }
 }
