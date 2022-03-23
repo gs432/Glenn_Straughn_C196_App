@@ -37,29 +37,16 @@ public class CourseList extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        /*
-        for (Term term : allTerms) {
-            if (term.getTermId() == termId) {
-                currentTerm = term;
-            }
-        }
-
-        filteredCourses = new ArrayList<>();
-        for (Course course: allCourses) {
-            if (course.getTermId() == termId) {
-                filteredCourses.add(course);
-            }
-        }
-        */
-
         repository=new Repository(getApplication());
-        List<Course> allCourses = repository.getAllCourses();
         RecyclerView recyclerView = findViewById(R.id.courseRecyclerView);
-
         final CourseAdapter courseAdapter = new CourseAdapter(this);
         recyclerView.setAdapter(courseAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        courseAdapter.setCourses(allCourses);
+        List<Course> filteredParts= new ArrayList<>();
+        for(Course course : repository.getAllCourses()){
+            if(course.getTermId() == termId)filteredParts.add(course);
+        }
+        courseAdapter.setCourses(filteredParts);
     }
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_course_list, menu);
@@ -88,8 +75,7 @@ public class CourseList extends AppCompatActivity {
 
     public void enterNewCourse(View view) {
         Intent intent = new Intent(CourseList.this,CourseDetails.class);
-        intent.putExtra("courseId", courseId);
-        intent.putExtra("id", -1);
+
         startActivity(intent);
     }
 }

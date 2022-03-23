@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         Repository repo=new Repository(getApplication());
+        /*
         Term term = new Term(1, "term1", "1/2/23", "1/3/24");
         repo.insert(term);
 
@@ -34,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
 
         Term term3 = new Term(3, "term3", "3/2/23", "3/3/24");
         repo.insert(term3);
+
+         */
 
 
 

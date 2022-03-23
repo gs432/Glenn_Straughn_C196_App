@@ -65,6 +65,7 @@ public class CourseDetails extends AppCompatActivity {
         courseNote = getIntent().getStringExtra("courseNote");
         termId = getIntent().getIntExtra("termId", -1);
 
+
         editCourseName.findViewById(R.id.courseName);
         editCourseName.setText(courseName);
         editCourseStart.findViewById(R.id.courseStart);
@@ -81,6 +82,8 @@ public class CourseDetails extends AppCompatActivity {
         editInstructorEmail.setText(instructorEmail);
         editCourseNote.findViewById(R.id.courseNote);
         editCourseNote.setText(courseNote);
+
+
 
         repository = new Repository(getApplication());
 
@@ -124,7 +127,7 @@ public class CourseDetails extends AppCompatActivity {
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_term_details, menu);
+        getMenuInflater().inflate(R.menu.menu_course_details, menu);
         return true;
     }
 
