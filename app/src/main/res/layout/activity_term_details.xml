@@ -8,16 +8,6 @@
 
 
     <Button
-        android:id="@+id/saveTermBtn"
-        android:layout_width="180dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="230dp"
-        android:text="Save Term"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
         android:id="@+id/viewCoursesBtn"
         android:layout_width="180dp"
         android:layout_height="wrap_content"
