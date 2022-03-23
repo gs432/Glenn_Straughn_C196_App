@@ -23,9 +23,11 @@ public class AssessmentDetails extends AppCompatActivity {
 
     Repository repository;
     int assessmentId;
-    EditText editAssessmentName;
-    EditText editAssessmentStart;
-    EditText editAssessmentEnd;
+    EditText assessmentName;
+    EditText assessmentStart;
+    EditText assessmentEnd;
+    EditText assessmentType;
+    int courseId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,15 +44,15 @@ public class AssessmentDetails extends AppCompatActivity {
                 Assessment assessment;
                 if (assessmentId == -1) {
                     int newID = repository.getAllAssessments().get(repository.getAllTerms().size() - 1).getAssessmentId() + 1;
-                    assessment = new Assessment(newID, editAssessmentName.getText().toString(), editAssessmentStart.getText().toString(), editAssessmentEnd.getText().toString());
+                    assessment = new Assessment(newID, assessmentName.getText().toString(), assessmentStart.getText().toString(), assessmentEnd.getText().toString(), assessmentType.getText().toString(), courseId);
                     repository.insert(assessment);
                 } else {
-                    assessment = new Assessment(assessmentId, editAssessmentName.getText().toString(), editAssessmentStart.getText().toString(), editAssessmentEnd.getText().toString());
+                    assessment = new Assessment(assessmentId, assessmentName.getText().toString(), assessmentStart.getText().toString(), assessmentEnd.getText().toString(), assessmentType.getText().toString(), courseId);
                     repository.update(assessment);
                 }
                 return true;
-            case R.id.notification:
-                String chosenAssessmentStart = editAssessmentStart.getText().toString();
+            case R.id.startNotification:
+                String chosenAssessmentStart = assessmentStart.getText().toString();
 
                 String dateFormat = "MM/dd/yy";
                 SimpleDateFormat sdf = new SimpleDateFormat(dateFormat, Locale.US);
@@ -64,13 +66,13 @@ public class AssessmentDetails extends AppCompatActivity {
 
                 Long notifyStartTrigger = notificationStartDate.getTime();
                 Intent intent = new Intent(AssessmentDetails.this, Receiver.class);
-                intent.putExtra("key", "Attention! " + "The assessment entitled " + editAssessmentName + " starts " + editAssessmentStart + "!");
-                PendingIntent pendingIntent = PendingIntent.getBroadcast(AssessmentDetails.this, ++MainActivity.numAlert, intent, 0);
+                intent.putExtra("key", "Attention! " + "The assessment entitled " + assessmentName + " starts " + assessmentStart + "!");
+                PendingIntent pendingIntent = PendingIntent.getBroadcast(AssessmentDetails.this, ++MainActivity.alertCount, intent, 0);
                 AlarmManager am = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
                 am.set(AlarmManager.RTC_WAKEUP, notifyStartTrigger, pendingIntent);
                 return true;
-            case R.id.notification:
-                String chosenAssessmentEnd = editAssessmentEnd.getText().toString();
+            case R.id.endNotification:
+                String chosenAssessmentEnd = assessmentEnd.getText().toString();
 
                 dateFormat = "MM/dd/yy";
                 sdf = new SimpleDateFormat(dateFormat, Locale.US);
@@ -84,12 +86,14 @@ public class AssessmentDetails extends AppCompatActivity {
 
                 Long notifyEndTrigger = notificationEndDate.getTime();
                 intent = new Intent(AssessmentDetails.this, Receiver.class);
-                intent.putExtra("key", "Attention! " + "The assessment entitled " + editAssessmentName + " ends " + editAssessmentEnd + "!");
-                pendingIntent = PendingIntent.getBroadcast(AssessmentDetails.this, ++MainActivity.numAlert, intent, 0);
+                intent.putExtra("key", "Attention! " + "The assessment entitled " + assessmentName + " ends " + assessmentEnd + "!");
+                pendingIntent = PendingIntent.getBroadcast(AssessmentDetails.this, ++MainActivity.alertCount, intent, 0);
                 am = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
                 am.set(AlarmManager.RTC_WAKEUP, notifyEndTrigger, pendingIntent);
                 return true;
         }
         return super.onOptionsItemSelected(item);
     }
+
+
 }

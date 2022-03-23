@@ -13,7 +13,7 @@ import com.example.glenn_straughn_c196_app.Entities.Assessment;
 import com.example.glenn_straughn_c196_app.Entities.Course;
 import com.example.glenn_straughn_c196_app.Entities.Term;
 
-@Database(entities = {Term.class, Course.class, Assessment.class}, version = 1,exportSchema = false)
+@Database(entities = {Term.class, Course.class, Assessment.class}, version = 2,exportSchema = false)
 public abstract class DbBuilder extends RoomDatabase {
 
     private static volatile DbBuilder INSTANCE;

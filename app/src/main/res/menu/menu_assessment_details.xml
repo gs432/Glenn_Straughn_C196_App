@@ -3,7 +3,11 @@
     <item android:title="@string/save"
         android:orderInCategory="100"
         android:id="@+id/saveAssessment"/>
-    <item android:title="@string/get_notification"
+    <item android:title="Start Date Notice"
+    android:orderInCategory="100"
+    android:id="@+id/startNotification"/>
+    <item android:title="End Date Notice"
         android:orderInCategory="100"
-        android:id="@+id/notification"/>
+        android:id="@+id/endNotification"/>
+
 </menu>

@@ -13,6 +13,7 @@ import com.example.glenn_straughn_c196_app.R;
 import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
+    public static int alertCount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
