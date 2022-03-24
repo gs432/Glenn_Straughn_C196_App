@@ -21,12 +21,7 @@ import java.util.Objects;
 
 public class CourseList extends AppCompatActivity {
 
-    List<Term> allTerms;
-    List<Course> allCourses;
-    List<Course> filteredCourses;
     int termId;
-    int courseId;
-    Term currentTerm;
     private Repository repository;
 
     @Override
@@ -42,11 +37,11 @@ public class CourseList extends AppCompatActivity {
         final CourseAdapter courseAdapter = new CourseAdapter(this);
         recyclerView.setAdapter(courseAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        List<Course> filteredParts= new ArrayList<>();
+        List<Course> filteredCourses= new ArrayList<>();
         for(Course course : repository.getAllCourses()){
-            if(course.getTermId() == termId)filteredParts.add(course);
+            if(course.getTermId() == termId)filteredCourses.add(course);
         }
-        courseAdapter.setCourses(filteredParts);
+        courseAdapter.setCourses(filteredCourses);
     }
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_course_list, menu);
