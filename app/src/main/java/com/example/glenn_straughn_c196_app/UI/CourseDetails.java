@@ -120,7 +120,7 @@ public class CourseDetails extends AppCompatActivity {
             case R.id.saveCourse:
                 Course course;
                 if (courseId == -1) {
-                    int newID = repository.getAllTerms().get(repository.getAllTerms().size() - 1).getTermId() + 1;
+                    int newID = repository.getAllCourses().get(repository.getAllCourses().size() - 1).getCourseId() + 1;
                     course = new Course(newID, editCourseName.getText().toString(), editCourseStart.getText().toString(), editCourseEnd.getText().toString(), editCourseStatus.getText().toString(), editInstructorName.getText().toString(), editInstructorPhone.getText().toString(), editInstructorEmail.getText().toString(), editCourseNote.getText().toString(), termId);
                     repository.insert(course);
                 } else {
