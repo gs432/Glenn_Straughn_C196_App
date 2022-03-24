@@ -120,6 +120,7 @@ public class TermDetails extends AppCompatActivity {
 
     public void enterCourseList(View view) {
         Intent intent=new Intent(TermDetails.this,CourseList.class);
+        intent.putExtra("termId", termId);
         startActivity(intent);
     }
 }

@@ -65,25 +65,25 @@ public class CourseDetails extends AppCompatActivity {
         courseNote = getIntent().getStringExtra("courseNote");
         termId = getIntent().getIntExtra("termId", -1);
 
-        /*
-        editCourseName.findViewById(R.id.courseName);
+
+        editCourseName= findViewById(R.id.courseName);
         editCourseName.setText(courseName);
-        editCourseStart.findViewById(R.id.courseStart);
+        editCourseStart=findViewById(R.id.courseStart);
         editCourseStart.setText(courseStart);
-        editCourseEnd.findViewById(R.id.courseEnd);
+        editCourseEnd=findViewById(R.id.courseEnd);
         editCourseEnd.setText(courseEnd);
-        editCourseStatus.findViewById(R.id.courseStatus);
+        editCourseStatus=findViewById(R.id.courseStatus);
         editCourseStatus.setText(courseStatus);
-        editInstructorName.findViewById(R.id.instructorName);
+        editInstructorName=findViewById(R.id.instructorName);
         editInstructorName.setText(instructorName);
-        editInstructorPhone.findViewById(R.id.instructorPhone);
+        editInstructorPhone=findViewById(R.id.instructorPhone);
         editInstructorPhone.setText(instructorPhone);
-        editInstructorEmail.findViewById(R.id.instructorEmail);
+        editInstructorEmail=findViewById(R.id.instructorEmail);
         editInstructorEmail.setText(instructorEmail);
-        editCourseNote.findViewById(R.id.courseNote);
+        editCourseNote=findViewById(R.id.courseNote);
         editCourseNote.setText(courseNote);
 
-         */
+
 
         repository = new Repository(getApplication());
 
@@ -101,9 +101,9 @@ public class CourseDetails extends AppCompatActivity {
             updateEndLabel();
         };
 
-        //editCourseStart.setOnClickListener(view -> new DatePickerDialog(CourseDetails.this, courseStartDate, myCalendarStart.get(Calendar.YEAR), myCalendarStart.get(Calendar.MONTH), myCalendarStart.get(Calendar.DAY_OF_MONTH)).show());
+        editCourseStart.setOnClickListener(view -> new DatePickerDialog(CourseDetails.this, courseStartDate, myCalendarStart.get(Calendar.YEAR), myCalendarStart.get(Calendar.MONTH), myCalendarStart.get(Calendar.DAY_OF_MONTH)).show());
 
-        //editCourseEnd.setOnClickListener(view -> new DatePickerDialog(CourseDetails.this, courseEndDate, myCalendarEnd.get(Calendar.YEAR), myCalendarEnd.get(Calendar.MONTH), myCalendarEnd.get(Calendar.DAY_OF_MONTH)).show());
+        editCourseEnd.setOnClickListener(view -> new DatePickerDialog(CourseDetails.this, courseEndDate, myCalendarEnd.get(Calendar.YEAR), myCalendarEnd.get(Calendar.MONTH), myCalendarEnd.get(Calendar.DAY_OF_MONTH)).show());
 
     }
 

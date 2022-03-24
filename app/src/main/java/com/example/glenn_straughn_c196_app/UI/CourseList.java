@@ -32,6 +32,7 @@ public class CourseList extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        termId = getIntent().getIntExtra("termId", -1);
         repository=new Repository(getApplication());
         RecyclerView recyclerView = findViewById(R.id.courseRecyclerView);
         final CourseAdapter courseAdapter = new CourseAdapter(this);
@@ -57,12 +58,16 @@ public class CourseList extends AppCompatActivity {
 
             case R.id.courseRefresh:
                 repository=new Repository(getApplication());
-                List<Course> allCourses = repository.getAllCourses();
+                List<Course> filteredCourses= new ArrayList<>();
+                for(Course course : repository.getAllCourses()){
+                    if(course.getTermId() == termId)filteredCourses.add(course);
+                }
+               // courseAdapter.setCourses(filteredCourses);
                 RecyclerView recyclerView = findViewById(R.id.courseRecyclerView);
                 final CourseAdapter courseAdapter = new CourseAdapter(this);
                 recyclerView.setAdapter(courseAdapter);
                 recyclerView.setLayoutManager(new LinearLayoutManager(this));
-                courseAdapter.setCourses(allCourses);
+                courseAdapter.setCourses(filteredCourses);
         }
 
         return super.onOptionsItemSelected(item);
@@ -70,7 +75,6 @@ public class CourseList extends AppCompatActivity {
 
     public void enterNewCourse(View view) {
         Intent intent = new Intent(CourseList.this,CourseDetails.class);
-
         startActivity(intent);
     }
 }
