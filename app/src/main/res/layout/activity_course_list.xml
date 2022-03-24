@@ -49,8 +49,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:rippleColor="#000000"
         app:srcCompat="@drawable/ic_baseline_add_circle_24"
-        app:useCompatPadding="false"
-        android:contentDescription="addCourseButton" />
+        app:useCompatPadding="false" />
 
     <TextView
         android:id="@+id/textView7"
@@ -61,4 +60,5 @@
         android:text="Add New Course"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

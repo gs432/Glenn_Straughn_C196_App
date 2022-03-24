@@ -65,7 +65,7 @@ public class CourseDetails extends AppCompatActivity {
         courseNote = getIntent().getStringExtra("courseNote");
         termId = getIntent().getIntExtra("termId", -1);
 
-
+        /*
         editCourseName.findViewById(R.id.courseName);
         editCourseName.setText(courseName);
         editCourseStart.findViewById(R.id.courseStart);
@@ -83,7 +83,7 @@ public class CourseDetails extends AppCompatActivity {
         editCourseNote.findViewById(R.id.courseNote);
         editCourseNote.setText(courseNote);
 
-
+         */
 
         repository = new Repository(getApplication());
 
@@ -101,29 +101,10 @@ public class CourseDetails extends AppCompatActivity {
             updateEndLabel();
         };
 
-        editCourseStart.setOnClickListener(view -> new DatePickerDialog(CourseDetails.this, courseStartDate, myCalendarStart.get(Calendar.YEAR), myCalendarStart.get(Calendar.MONTH), myCalendarStart.get(Calendar.DAY_OF_MONTH)).show());
+        //editCourseStart.setOnClickListener(view -> new DatePickerDialog(CourseDetails.this, courseStartDate, myCalendarStart.get(Calendar.YEAR), myCalendarStart.get(Calendar.MONTH), myCalendarStart.get(Calendar.DAY_OF_MONTH)).show());
 
-        editCourseEnd.setOnClickListener(view -> new DatePickerDialog(CourseDetails.this, courseEndDate, myCalendarEnd.get(Calendar.YEAR), myCalendarEnd.get(Calendar.MONTH), myCalendarEnd.get(Calendar.DAY_OF_MONTH)).show());
+        //editCourseEnd.setOnClickListener(view -> new DatePickerDialog(CourseDetails.this, courseEndDate, myCalendarEnd.get(Calendar.YEAR), myCalendarEnd.get(Calendar.MONTH), myCalendarEnd.get(Calendar.DAY_OF_MONTH)).show());
 
-    }
-
-    private void updateStartLabel() {
-        String myFormat = "MM/dd/yy";
-        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
-
-        editCourseStart.setText(sdf.format(myCalendarStart.getTime()));
-    }
-
-    private void updateEndLabel() {
-        String myFormat = "MM/dd/yy";
-        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
-
-        editCourseEnd.setText(sdf.format(myCalendarEnd.getTime()));
-    }
-
-    public void enterAssessmentList(View view) {
-        Intent intent=new Intent(CourseDetails.this,AssessmentList.class);
-        startActivity(intent);
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -149,5 +130,24 @@ public class CourseDetails extends AppCompatActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void updateStartLabel() {
+        String myFormat = "MM/dd/yy";
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+
+        editCourseStart.setText(sdf.format(myCalendarStart.getTime()));
+    }
+
+    private void updateEndLabel() {
+        String myFormat = "MM/dd/yy";
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+
+        editCourseEnd.setText(sdf.format(myCalendarEnd.getTime()));
+    }
+
+    public void enterAssessmentList(View view) {
+        Intent intent=new Intent(CourseDetails.this,AssessmentList.class);
+        startActivity(intent);
     }
 }
