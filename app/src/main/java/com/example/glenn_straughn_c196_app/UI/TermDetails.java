@@ -10,14 +10,19 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.glenn_straughn_c196_app.Database.Repository;
+import com.example.glenn_straughn_c196_app.Entities.Assessment;
+import com.example.glenn_straughn_c196_app.Entities.Course;
 import com.example.glenn_straughn_c196_app.Entities.Term;
 import com.example.glenn_straughn_c196_app.R;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 
@@ -35,6 +40,8 @@ public class TermDetails extends AppCompatActivity {
     DatePickerDialog.OnDateSetListener termEndDate;
     final Calendar myCalendarStart = Calendar.getInstance();
     final Calendar myCalendarEnd = Calendar.getInstance();
+    Term selectedTerm;
+    int courseCount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +84,19 @@ public class TermDetails extends AppCompatActivity {
 
         editTermEnd.setOnClickListener(view -> new DatePickerDialog(TermDetails.this, termEndDate, myCalendarEnd.get(Calendar.YEAR), myCalendarEnd.get(Calendar.MONTH), myCalendarEnd.get(Calendar.DAY_OF_MONTH)).show());
 
+        List<Course> attachedCourses = new ArrayList<>();
+        for (Course c : repository.getAllCourses()) {
+            if (c.getTermId() == termId){
+                attachedCourses.add(c);
+            }
+        }
+        courseCount = attachedCourses.size();
+
+        for (Term t : repository.getAllTerms()) {
+            if (t.getTermId() == termId) {
+                selectedTerm = t;
+            }
+        }
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -95,11 +115,20 @@ public class TermDetails extends AppCompatActivity {
                     int newID = repository.getAllTerms().get(repository.getAllTerms().size() - 1).getTermId() + 1;
                     term = new Term(newID, editTermName.getText().toString(), editTermStart.getText().toString(), editTermEnd.getText().toString());
                     repository.insert(term);
+                    Toast.makeText(getApplicationContext(), "Term saved. Select refresh from Term List menu", Toast.LENGTH_LONG).show();
                 } else {
                     term = new Term(termId, editTermName.getText().toString(), editTermStart.getText().toString(), editTermEnd.getText().toString());
                     repository.update(term);
+                    Toast.makeText(getApplicationContext(), "Term updated. Select refresh from Term List menu", Toast.LENGTH_LONG).show();
                 }
                 return true;
+            case R.id.deleteTerm:
+                if(courseCount != 0) {
+                    Toast.makeText(getApplicationContext(), "The courses for a term must be deleted prior to term deletion!", Toast.LENGTH_LONG).show();
+                } else {
+                    repository.delete(selectedTerm);
+                    Toast.makeText(getApplicationContext(), "Term deleted!", Toast.LENGTH_LONG).show();
+                }
         }
         return super.onOptionsItemSelected(item);
     }

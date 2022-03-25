@@ -15,4 +15,6 @@
     <string name="delete">Delete</string>
     <string name="save">Save</string>
     <string name="get_notification">Get Notification</string>
+    <string name="end_date_notice">End Date Notice</string>
+    <string name="start_date_notice">Start Date Notice</string>
 </resources>

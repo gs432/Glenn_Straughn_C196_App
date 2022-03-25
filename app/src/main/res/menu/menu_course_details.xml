@@ -6,7 +6,13 @@
     <item android:title="Share Note"
         android:orderInCategory="100"
         android:id="@+id/share"/>
-    <item android:title="@string/get_notification"
+    <item android:title="@string/start_date_notice"
         android:orderInCategory="100"
-        android:id="@+id/notification"/>
+        android:id="@+id/startNotification"/>
+    <item android:title="@string/end_date_notice"
+        android:orderInCategory="100"
+        android:id="@+id/endNotification"/>
+    <item android:title="@string/delete"
+        android:orderInCategory="100"
+        android:id="@+id/deleteCourse"/>
 </menu>

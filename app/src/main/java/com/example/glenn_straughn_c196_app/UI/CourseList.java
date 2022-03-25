@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.glenn_straughn_c196_app.Database.Repository;
 import com.example.glenn_straughn_c196_app.Entities.Course;
@@ -43,7 +44,9 @@ public class CourseList extends AppCompatActivity {
             if(course.getTermId() == termId)filteredCourses.add(course);
         }
         courseAdapter.setCourses(filteredCourses);
+
     }
+
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_course_list, menu);
         return true;
@@ -62,12 +65,13 @@ public class CourseList extends AppCompatActivity {
                 for(Course course : repository.getAllCourses()){
                     if(course.getTermId() == termId)filteredCourses.add(course);
                 }
-               // courseAdapter.setCourses(filteredCourses);
                 RecyclerView recyclerView = findViewById(R.id.courseRecyclerView);
                 final CourseAdapter courseAdapter = new CourseAdapter(this);
                 recyclerView.setAdapter(courseAdapter);
                 recyclerView.setLayoutManager(new LinearLayoutManager(this));
                 courseAdapter.setCourses(filteredCourses);
+                Toast.makeText(getApplicationContext(), "Course List refreshed!", Toast.LENGTH_LONG).show();
+
         }
 
         return super.onOptionsItemSelected(item);

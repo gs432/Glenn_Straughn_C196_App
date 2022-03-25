@@ -40,6 +40,7 @@ public class TermList extends AppCompatActivity {
         recyclerView.setAdapter(termAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         termAdapter.setTerms(allTerms);
+
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {

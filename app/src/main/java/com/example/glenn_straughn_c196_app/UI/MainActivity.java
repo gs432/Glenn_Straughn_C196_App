@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        Repository repo=new Repository(getApplication());
+       // Repository repo=new Repository(getApplication());
         /*
         Term term = new Term(1, "term1", "1/2/23", "1/3/24");
         repo.insert(term);
@@ -37,9 +37,6 @@ public class MainActivity extends AppCompatActivity {
         repo.insert(term3);
 
          */
-
-
-
 
 
     }

@@ -3,11 +3,13 @@
     <item android:title="@string/save"
         android:orderInCategory="100"
         android:id="@+id/saveAssessment"/>
-    <item android:title="Start Date Notice"
+    <item android:title="@string/start_date_notice"
     android:orderInCategory="100"
     android:id="@+id/startNotification"/>
-    <item android:title="End Date Notice"
+    <item android:title="@string/end_date_notice"
         android:orderInCategory="100"
         android:id="@+id/endNotification"/>
-
+    <item android:title="@string/delete"
+        android:orderInCategory="100"
+        android:id="@+id/deleteAssessment"/>
 </menu>
