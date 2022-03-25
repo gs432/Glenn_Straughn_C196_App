@@ -110,7 +110,7 @@ public class AssessmentDetails extends AppCompatActivity {
                 Assessment assessment;
                 if (assessmentId == -1) {
                     int newID = repository.getAllAssessments().get(repository.getAllAssessments().size() - 1).getAssessmentId() + 1;
-                    assessment = new Assessment(newID, editAssessmentName.getText().toString(), editAssessmentStart.getText().toString(), editAssessmentEnd.getText().toString(), editAssessmentType.getText().toString(), courseId);
+                    assessment = new Assessment(newID, editAssessmentName.getText().toString(), editAssessmentStart.getText().toString(), editAssessmentEnd.getText().toString(), editAssessmentType.getText().toString(), courseId+1);
                     repository.insert(assessment);
                     Toast.makeText(getApplicationContext(), "Assessment saved. Select refresh from Assessment List menu", Toast.LENGTH_LONG).show();
                 } else {

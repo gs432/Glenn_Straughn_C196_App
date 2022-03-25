@@ -145,7 +145,7 @@ public class CourseDetails extends AppCompatActivity {
                 Course course;
                 if (courseId == -1) {
                     int newID = repository.getAllCourses().get(repository.getAllCourses().size() - 1).getCourseId() + 1;
-                    course = new Course(newID, editCourseName.getText().toString(), editCourseStart.getText().toString(), editCourseEnd.getText().toString(), editCourseStatus.getText().toString(), editInstructorName.getText().toString(), editInstructorPhone.getText().toString(), editInstructorEmail.getText().toString(), editCourseNote.getText().toString(), termId);
+                    course = new Course(newID, editCourseName.getText().toString(), editCourseStart.getText().toString(), editCourseEnd.getText().toString(), editCourseStatus.getText().toString(), editInstructorName.getText().toString(), editInstructorPhone.getText().toString(), editInstructorEmail.getText().toString(), editCourseNote.getText().toString(), termId+1);
                     repository.insert(course);
                     Toast.makeText(getApplicationContext(), "Course saved. Select refresh from Course List menu", Toast.LENGTH_LONG).show();
                 } else {
