@@ -10,7 +10,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.glenn_straughn_c196_app.Database.Repository;
@@ -36,7 +38,7 @@ public class AssessmentDetails extends AppCompatActivity {
     EditText editAssessmentName;
     EditText editAssessmentStart;
     EditText editAssessmentEnd;
-    EditText editAssessmentType;
+    Spinner typeSpinner;
     int courseId;
     DatePickerDialog.OnDateSetListener assessmentStartDate;
     DatePickerDialog.OnDateSetListener assessmentEndDate;
@@ -52,12 +54,12 @@ public class AssessmentDetails extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        assessmentId = getIntent().getIntExtra("assessmentId", assessmentId);
+        assessmentId = getIntent().getIntExtra("assessmentId", -1);
         assessmentName = getIntent().getStringExtra("assessmentName");
         assessmentStart = getIntent().getStringExtra("assessmentStart");
         assessmentEnd = getIntent().getStringExtra("assessmentEnd");
         assessmentType = getIntent().getStringExtra("assessmentType");
-        courseId = getIntent().getIntExtra("courseId", courseId);
+        courseId = getIntent().getIntExtra("selectedCourseId", courseId);
 
         editAssessmentName = findViewById(R.id.assessmentName);
         editAssessmentName.setText(assessmentName);
@@ -65,8 +67,10 @@ public class AssessmentDetails extends AppCompatActivity {
         editAssessmentStart.setText(assessmentStart);
         editAssessmentEnd = findViewById(R.id.assessmentEnd);
         editAssessmentEnd.setText(assessmentEnd);
-        editAssessmentType = findViewById(R.id.assessmentType);
-        editAssessmentType.setText(assessmentType);
+        typeSpinner = (Spinner)findViewById(R.id.assessmentType);
+        ArrayAdapter<CharSequence> statusAdapter = ArrayAdapter.createFromResource(this, R.array.type_array, android.R.layout.simple_spinner_item);
+        typeSpinner.setAdapter(statusAdapter);
+        typeSpinner.setSelection(setTypeSpinner(typeSpinner, assessmentType));
 
         repository = new Repository(getApplication());
 
@@ -109,12 +113,12 @@ public class AssessmentDetails extends AppCompatActivity {
             case R.id.saveAssessment:
                 Assessment assessment;
                 if (assessmentId == -1) {
-                    int newID = repository.getAllAssessments().get(repository.getAllAssessments().size() - 1).getAssessmentId() + 1;
-                    assessment = new Assessment(newID, editAssessmentName.getText().toString(), editAssessmentStart.getText().toString(), editAssessmentEnd.getText().toString(), editAssessmentType.getText().toString(), courseId+1);
+                    int newID = repository.getAllAssessments().size();
+                    assessment = new Assessment(++newID, editAssessmentName.getText().toString(), editAssessmentStart.getText().toString(), editAssessmentEnd.getText().toString(), typeSpinner.getSelectedItem().toString(), courseId);
                     repository.insert(assessment);
                     Toast.makeText(getApplicationContext(), "Assessment saved. Select refresh from Assessment List menu", Toast.LENGTH_LONG).show();
                 } else {
-                    assessment = new Assessment(assessmentId, editAssessmentName.getText().toString(), editAssessmentStart.getText().toString(), editAssessmentEnd.getText().toString(), editAssessmentType.getText().toString(), courseId);
+                    assessment = new Assessment(assessmentId, editAssessmentName.getText().toString(), editAssessmentStart.getText().toString(), editAssessmentEnd.getText().toString(), typeSpinner.getSelectedItem().toString(), selectedAssessment.getCourseId());
                     repository.update(assessment);
                     Toast.makeText(getApplicationContext(), "Assessment updated. Select refresh from Assessment List menu", Toast.LENGTH_LONG).show();
                 }
@@ -133,8 +137,8 @@ public class AssessmentDetails extends AppCompatActivity {
                 }
 
                 Long notifyStartTrigger = notificationStartDate.getTime();
-                Intent intent = new Intent(AssessmentDetails.this, Receiver.class);
-                intent.putExtra("startNotice", "Attention! " + "The assessment entitled " + assessmentName + " starts " + assessmentStart + "!");
+                Intent intent = new Intent(AssessmentDetails.this, MyReceiver.class);
+                intent.putExtra("key", "Attention! " + "The assessment entitled " + assessmentName + " starts " + assessmentStart + "!");
                 PendingIntent pendingIntent = PendingIntent.getBroadcast(AssessmentDetails.this, ++MainActivity.alertCount, intent, 0);
                 AlarmManager am = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
                 am.set(AlarmManager.RTC_WAKEUP, notifyStartTrigger, pendingIntent);
@@ -154,8 +158,8 @@ public class AssessmentDetails extends AppCompatActivity {
                 }
 
                 Long notifyEndTrigger = notificationEndDate.getTime();
-                intent = new Intent(AssessmentDetails.this, Receiver.class);
-                intent.putExtra("endNotice", "Attention! " + "The assessment entitled " + assessmentName + " ends " + assessmentEnd + "!");
+                intent = new Intent(AssessmentDetails.this, MyReceiver.class);
+                intent.putExtra("key", "Attention! " + "The assessment entitled " + assessmentName + " ends " + assessmentEnd + "!");
                 pendingIntent = PendingIntent.getBroadcast(AssessmentDetails.this, ++MainActivity.alertCount, intent, 0);
                 am = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
                 am.set(AlarmManager.RTC_WAKEUP, notifyEndTrigger, pendingIntent);
@@ -163,7 +167,7 @@ public class AssessmentDetails extends AppCompatActivity {
                 return true;
             case R.id.deleteAssessment:
                 repository.delete(selectedAssessment);
-                Toast.makeText(getApplicationContext(), "Assessment deleted!", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Assessment deleted! Select refresh from Assessment List menu.", Toast.LENGTH_LONG).show();
         }
         return super.onOptionsItemSelected(item);
     }
@@ -180,6 +184,15 @@ public class AssessmentDetails extends AppCompatActivity {
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
 
         editAssessmentEnd.setText(sdf.format(myCalendarEnd.getTime()));
+    }
+
+    public static int setTypeSpinner(Spinner spinner, String string){
+        for (int i=0; i<spinner.getCount(); i++){
+            if (spinner.getItemAtPosition(i).toString().equalsIgnoreCase(string)){
+                return i;
+            }
+        }
+        return 0;
     }
 
 }

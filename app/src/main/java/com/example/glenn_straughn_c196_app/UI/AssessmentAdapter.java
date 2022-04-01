@@ -28,7 +28,7 @@ public class AssessmentAdapter extends RecyclerView.Adapter<AssessmentAdapter.As
         private AssessmentViewHolder(View itemView){
 
             super(itemView);
-            assessmentItemView = itemView.findViewById(R.id.textView);
+            assessmentItemView = itemView.findViewById(R.id.assessmentItemView);
             itemView.setOnClickListener(view -> {
                 int position = getAdapterPosition();
                 final Assessment current = rAssessmentList.get(position);
@@ -36,10 +36,11 @@ public class AssessmentAdapter extends RecyclerView.Adapter<AssessmentAdapter.As
                 String myFormat = "MM/dd/yy";
                 SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
 
-                Intent intent=new Intent(context,AssessmentList.class);
+                Intent intent=new Intent(context,AssessmentDetails.class);
                 intent.putExtra("assessmentId", current.getAssessmentId());
                 intent.putExtra("assessmentName", current.getAssessmentName());
-                intent.putExtra("assessmentDay", current.getAssessmentStart());
+                intent.putExtra("assessmentStart", current.getAssessmentStart());
+                intent.putExtra("assessmentEnd", current.getAssessmentEnd());
                 intent.putExtra("assessmentType", current.getAssessmentType());
                 intent.putExtra("courseId", current.getCourseId());
                 context.startActivity(intent);

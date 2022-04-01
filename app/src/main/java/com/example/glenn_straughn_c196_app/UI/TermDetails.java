@@ -112,8 +112,8 @@ public class TermDetails extends AppCompatActivity {
             case R.id.saveTerm:
                 Term term;
                 if (termId == -1) {
-                    int newID = repository.getAllTerms().get(repository.getAllTerms().size() - 1).getTermId() + 1;
-                    term = new Term(newID, editTermName.getText().toString(), editTermStart.getText().toString(), editTermEnd.getText().toString());
+                    int newID = repository.getAllTerms().size();
+                    term = new Term(++newID, editTermName.getText().toString(), editTermStart.getText().toString(), editTermEnd.getText().toString());
                     repository.insert(term);
                     Toast.makeText(getApplicationContext(), "Term saved. Select refresh from Term List menu", Toast.LENGTH_LONG).show();
                 } else {
@@ -127,7 +127,7 @@ public class TermDetails extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "The courses for a term must be deleted prior to term deletion!", Toast.LENGTH_LONG).show();
                 } else {
                     repository.delete(selectedTerm);
-                    Toast.makeText(getApplicationContext(), "Term deleted!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Term deleted! Select refresh from Term List menu.", Toast.LENGTH_LONG).show();
                 }
         }
         return super.onOptionsItemSelected(item);
@@ -148,8 +148,14 @@ public class TermDetails extends AppCompatActivity {
     }
 
     public void enterCourseList(View view) {
-        Intent intent=new Intent(TermDetails.this,CourseList.class);
-        intent.putExtra("termId", termId);
-        startActivity(intent);
+        if (termId == -1){
+            Toast.makeText(getApplicationContext(), "A term must be saved before adding courses.", Toast.LENGTH_LONG).show();
+        } else {
+            Intent intent=new Intent(TermDetails.this,CourseList.class);
+            intent.putExtra("termId", termId);
+            startActivity(intent);
+        }
+
+
     }
 }

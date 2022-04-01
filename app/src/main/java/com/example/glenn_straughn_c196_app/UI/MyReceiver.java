@@ -1,5 +1,7 @@
 package com.example.glenn_straughn_c196_app.UI;
 
+import static android.content.Context.NOTIFICATION_SERVICE;
+
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -10,18 +12,17 @@ import android.widget.Toast;
 
 import androidx.core.app.NotificationCompat;
 
-import static android.content.Context.NOTIFICATION_SERVICE;
-
 import com.example.glenn_straughn_c196_app.R;
 
-public class Receiver extends BroadcastReceiver {
-    String channelId ="test";
+public class MyReceiver extends BroadcastReceiver {
+    String channelId = "test";
     static int notificationID;
 
     @Override
     public void onReceive(Context context, Intent intent) {
+        // TODO: This method is called when the BroadcastReceiver is receiving
+        // an Intent broadcast.
         Toast.makeText(context,intent.getStringExtra("key"),Toast.LENGTH_LONG).show();
-
         createNotificationChannel(context, channelId);
         Notification n=new NotificationCompat.Builder(context, channelId)
                 .setSmallIcon(R.drawable.ic_launcher_foreground)
@@ -30,6 +31,7 @@ public class Receiver extends BroadcastReceiver {
 
         NotificationManager notificationManager=(NotificationManager)context.getSystemService(NOTIFICATION_SERVICE);
         notificationManager.notify(notificationID++,n);
+
     }
 
     private void createNotificationChannel(Context context,String CHANNEL_ID){

@@ -11,7 +11,10 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.SimpleCursorAdapter;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.glenn_straughn_c196_app.Database.Repository;
@@ -44,7 +47,7 @@ public class CourseDetails extends AppCompatActivity {
     EditText editCourseName;
     EditText editCourseStart;
     EditText editCourseEnd;
-    EditText editCourseStatus;
+    Spinner statusSpinner;
     EditText editInstructorName;
     EditText editInstructorPhone;
     EditText editInstructorEmail;
@@ -65,6 +68,7 @@ public class CourseDetails extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
+
         courseId = getIntent().getIntExtra("courseId", -1);
         courseName = getIntent().getStringExtra("courseName");
         courseStart = getIntent().getStringExtra("courseStart");
@@ -74,7 +78,7 @@ public class CourseDetails extends AppCompatActivity {
         instructorPhone = getIntent().getStringExtra("instructorPhone");
         instructorEmail = getIntent().getStringExtra("instructorEmail");
         courseNote = getIntent().getStringExtra("courseNote");
-        termId = getIntent().getIntExtra("termId", termId);
+        termId = getIntent().getIntExtra("selectedTermId", termId);
 
 
         editCourseName= findViewById(R.id.courseName);
@@ -83,8 +87,12 @@ public class CourseDetails extends AppCompatActivity {
         editCourseStart.setText(courseStart);
         editCourseEnd=findViewById(R.id.courseEnd);
         editCourseEnd.setText(courseEnd);
-        editCourseStatus=findViewById(R.id.courseStatus);
-        editCourseStatus.setText(courseStatus);
+
+        statusSpinner = (Spinner)findViewById(R.id.courseStatus);
+        ArrayAdapter<CharSequence> statusAdapter = ArrayAdapter.createFromResource(this, R.array.status_array, android.R.layout.simple_spinner_item);
+        statusSpinner.setAdapter(statusAdapter);
+        statusSpinner.setSelection(setStatusSpinner(statusSpinner, courseStatus));
+
         editInstructorName=findViewById(R.id.instructorName);
         editInstructorName.setText(instructorName);
         editInstructorPhone=findViewById(R.id.instructorPhone);
@@ -144,15 +152,24 @@ public class CourseDetails extends AppCompatActivity {
             case R.id.saveCourse:
                 Course course;
                 if (courseId == -1) {
-                    int newID = repository.getAllCourses().get(repository.getAllCourses().size() - 1).getCourseId() + 1;
-                    course = new Course(newID, editCourseName.getText().toString(), editCourseStart.getText().toString(), editCourseEnd.getText().toString(), editCourseStatus.getText().toString(), editInstructorName.getText().toString(), editInstructorPhone.getText().toString(), editInstructorEmail.getText().toString(), editCourseNote.getText().toString(), termId+1);
+                    int newID = repository.getAllCourses().size();
+                    course = new Course(++newID, editCourseName.getText().toString(), editCourseStart.getText().toString(), editCourseEnd.getText().toString(), statusSpinner.getSelectedItem().toString(), editInstructorName.getText().toString(), editInstructorPhone.getText().toString(), editInstructorEmail.getText().toString(), editCourseNote.getText().toString(), termId);
                     repository.insert(course);
-                    Toast.makeText(getApplicationContext(), "Course saved. Select refresh from Course List menu", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Course saved. Select refresh from Course List menu.", Toast.LENGTH_LONG).show();
                 } else {
-                    course = new Course(courseId, editCourseName.getText().toString(), editCourseStart.getText().toString(), editCourseEnd.getText().toString(), editCourseStatus.getText().toString(), editInstructorName.getText().toString(), editInstructorPhone.getText().toString(), editInstructorEmail.getText().toString(), editCourseNote.getText().toString(), termId);
+                    course = new Course(courseId, editCourseName.getText().toString(), editCourseStart.getText().toString(), editCourseEnd.getText().toString(), statusSpinner.getSelectedItem().toString(), editInstructorName.getText().toString(), editInstructorPhone.getText().toString(), editInstructorEmail.getText().toString(), editCourseNote.getText().toString(), selectedCourse.getTermId());
                     repository.update(course);
-                    Toast.makeText(getApplicationContext(), "Course updated. Select refresh from Course List menu", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Course updated. Select refresh from Course List menu.", Toast.LENGTH_LONG).show();
                 }
+                return true;
+            case R.id.share:
+                Intent sendIntent = new Intent();
+                sendIntent.setAction(Intent.ACTION_SEND);
+                sendIntent.putExtra(Intent.EXTRA_TEXT, editCourseNote.getText().toString());
+                sendIntent.putExtra(Intent.EXTRA_TITLE,"Note for " + editCourseName.getText().toString() + ".");
+                sendIntent.setType("text/plain");
+                Intent shareIntent = Intent.createChooser(sendIntent, null);
+                startActivity(shareIntent);
                 return true;
             case R.id.startNotification:
                 String chosenCourseStart = editCourseStart.getText().toString();
@@ -168,8 +185,8 @@ public class CourseDetails extends AppCompatActivity {
                 }
 
                 Long notifyStartTrigger = notificationStartDate.getTime();
-                Intent intent = new Intent(CourseDetails.this, Receiver.class);
-                intent.putExtra("startNotice", "Attention! " + "The course entitled " + courseName + " starts " + courseStart + "!");
+                Intent intent = new Intent(CourseDetails.this, MyReceiver.class);
+                intent.putExtra("key", "Attention! " + "The course entitled " + courseName + " starts " + courseStart + "!");
                 PendingIntent pendingIntent = PendingIntent.getBroadcast(CourseDetails.this, ++MainActivity.alertCount, intent, 0);
                 AlarmManager am = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
                 am.set(AlarmManager.RTC_WAKEUP, notifyStartTrigger, pendingIntent);
@@ -189,8 +206,8 @@ public class CourseDetails extends AppCompatActivity {
                 }
 
                 Long notifyEndTrigger = notificationEndDate.getTime();
-                intent = new Intent(CourseDetails.this, Receiver.class);
-                intent.putExtra("endNotice", "Attention! " + "The course entitled " + courseName + " ends " + courseEnd + "!");
+                intent = new Intent(CourseDetails.this, MyReceiver.class);
+                intent.putExtra("key", "Attention! " + "The course entitled " + courseName + " ends " + courseEnd + "!");
                 pendingIntent = PendingIntent.getBroadcast(CourseDetails.this, ++MainActivity.alertCount, intent, 0);
                 am = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
                 am.set(AlarmManager.RTC_WAKEUP, notifyEndTrigger, pendingIntent);
@@ -201,7 +218,7 @@ public class CourseDetails extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "The scheduled assessments for a course must be deleted prior to course deletion!", Toast.LENGTH_LONG).show();
                 } else {
                     repository.delete(selectedCourse);
-                    Toast.makeText(getApplicationContext(), "Course deleted!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Course deleted! Select refresh from Course List menu.", Toast.LENGTH_LONG).show();
                 }
         }
         return super.onOptionsItemSelected(item);
@@ -221,9 +238,23 @@ public class CourseDetails extends AppCompatActivity {
         editCourseEnd.setText(sdf.format(myCalendarEnd.getTime()));
     }
 
-    public void enterAssessmentList(View view) {
-        Intent intent=new Intent(CourseDetails.this,AssessmentList.class);
-        intent.putExtra("courseId", ++courseId);
-        startActivity(intent);
+    public static int setStatusSpinner(Spinner spinner, String string){
+        for (int i=0; i<spinner.getCount(); i++){
+            if (spinner.getItemAtPosition(i).toString().equalsIgnoreCase(string)){
+                return i;
+            }
+        }
+        return 0;
     }
+
+    public void enterAssessmentList(View view) {
+        if (courseId == -1){
+            Toast.makeText(getApplicationContext(), "A course must be saved before adding assessments.", Toast.LENGTH_SHORT).show();
+        } else {
+            Intent intent=new Intent(CourseDetails.this,AssessmentList.class);
+            intent.putExtra("courseId", courseId);
+            startActivity(intent);
+        }
+    }
+
 }

@@ -9,7 +9,7 @@
     <string name="term_title">Term Title</string>
     <string name="terms">Terms</string>
     <string name="channel_name">Notifications</string>
-    <string name="channel_description">Description</string>
+    <string name="channel_description">Used for sending notifications.</string>
     <string name="details">Details</string>
     <string name="refresh">Refresh</string>
     <string name="delete">Delete</string>
@@ -17,4 +17,14 @@
     <string name="get_notification">Get Notification</string>
     <string name="end_date_notice">End Date Notice</string>
     <string name="start_date_notice">Start Date Notice</string>
+    <string-array name="status_array">
+        <item>In Progress</item>
+        <item>Completed</item>
+        <item>Dropped</item>
+        <item>Plan to take</item>
+    </string-array>
+    <string-array name="type_array">
+        <item>Performance</item>
+        <item>Objective</item>
+    </string-array>
 </resources>

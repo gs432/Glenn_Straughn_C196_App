@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.glenn_straughn_c196_app.Database.Repository;
 import com.example.glenn_straughn_c196_app.Entities.Term;
@@ -63,6 +64,7 @@ public class TermList extends AppCompatActivity {
                 recyclerView.setAdapter(termAdapter);
                 recyclerView.setLayoutManager(new LinearLayoutManager(this));
                 termAdapter.setTerms(allTerms);
+                Toast.makeText(getApplicationContext(), "Term List refreshed!", Toast.LENGTH_LONG).show();
         }
 
         return super.onOptionsItemSelected(item);

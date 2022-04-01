@@ -33,7 +33,7 @@ public class CourseList extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        termId = getIntent().getIntExtra("termId", -1);
+        termId = getIntent().getIntExtra("termId", termId);
         repository=new Repository(getApplication());
         RecyclerView recyclerView = findViewById(R.id.courseRecyclerView);
         final CourseAdapter courseAdapter = new CourseAdapter(this);
@@ -72,6 +72,21 @@ public class CourseList extends AppCompatActivity {
                 courseAdapter.setCourses(filteredCourses);
                 Toast.makeText(getApplicationContext(), "Course List refreshed!", Toast.LENGTH_LONG).show();
 
+
+
+                /*
+                repository=new Repository(getApplication());
+                List<Course> allCourses = repository.getAllCourses();
+                RecyclerView recyclerView = findViewById(R.id.courseRecyclerView);
+                final CourseAdapter courseAdapter=new CourseAdapter(this);
+                recyclerView.setAdapter(courseAdapter);
+                recyclerView.setLayoutManager(new LinearLayoutManager(this));
+                courseAdapter.setCourses(allCourses);
+
+                 */
+
+
+
         }
 
         return super.onOptionsItemSelected(item);
@@ -79,6 +94,7 @@ public class CourseList extends AppCompatActivity {
 
     public void enterNewCourse(View view) {
         Intent intent = new Intent(CourseList.this,CourseDetails.class);
+        intent.putExtra("selectedTermId", termId);
         startActivity(intent);
     }
 }
